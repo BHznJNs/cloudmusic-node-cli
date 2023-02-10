@@ -1,0 +1,21 @@
+{
+    "include": [
+        "src/*.ts",
+        "utils/*.ts",
+        "ui/*.ts"
+    ],
+    "exclude": [
+        "node_modules/*"
+    ],
+    "compileOnSave": false,
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "ES2022",
+        "removeComments": true,
+        "alwaysStrict": true,
+        "incremental": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "moduleResolution": "node"
+    }
+}
