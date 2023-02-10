@@ -14,12 +14,12 @@ export default async function showLoginUI() {
             {
                 type: 'input',
                 name: 'email',
-                message: "Email:",
+                message: "邮箱:",
             },
             {
                 type: 'input',
                 name: 'password',
-                message: "Password:",
+                message: "密码:",
             },
         ])
     
