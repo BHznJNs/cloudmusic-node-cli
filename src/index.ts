@@ -6,9 +6,7 @@ import ui from "../ui/index.js"
 
 // 创建数据文件夹
 const { dataFolder } = filePaths
-if (checkFileExist(dataFolder)) {
-    mkDir(dataFolder)
-}
+if (!checkFileExist(dataFolder)) mkDir(dataFolder)
 
 // 是否已登录
 let isLoggedIn: boolean = checkFileExist(filePaths.userData)

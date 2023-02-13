@@ -4,9 +4,8 @@ import filePaths from "../utils/filePaths/index.js";
 import checkLoginState from "../utils/loginState/check/index.js";
 import ui from "../ui/index.js";
 const { dataFolder } = filePaths;
-if (checkFileExist(dataFolder)) {
+if (!checkFileExist(dataFolder))
     mkDir(dataFolder);
-}
 let isLoggedIn = checkFileExist(filePaths.userData);
 (async function main() {
     if (!isLoggedIn) {

@@ -21,6 +21,7 @@ export default async function (songArr, msg) {
             break;
         }
         else if (targetSongIndex === 1) {
+            playQueue.stop();
             playQueue.value = songArr;
             continue;
         }

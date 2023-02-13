@@ -24,6 +24,7 @@ export default async function(songArr: Array<any>, msg: string) {
         if (!targetSongIndex) {
             break
         } else if (targetSongIndex === 1) {
+            playQueue.stop()
             playQueue.value = songArr
             continue
         }
