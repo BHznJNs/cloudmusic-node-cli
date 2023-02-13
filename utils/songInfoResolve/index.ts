@@ -17,7 +17,7 @@ function songInfoResolve(songItem: any) {
 
     const access = Boolean((fee === 0) || (fee === 8))
     if (!access) {
-        console.log(songFeeMsg[fee])
+        console.log("\n" + songFeeMsg[fee])
     }
 
     const result: SongInfo = {

@@ -1,7 +1,7 @@
 import inquirer from "inquirer"
 import songItemTemplate from "../../utils/songItemTemplate/index.js"
 import getIndex from "../../utils/getIndex/index.js"
-import playThisList from "../../utils/playThisList/index.js"
+import playQueue from "../../utils/playQueue/index.js"
 import songInfoResolve, { SongInfo } from "../../utils/songInfoResolve/index.js"
 
 export default async function(songArr: Array<any>, msg: string) {
@@ -24,16 +24,15 @@ export default async function(songArr: Array<any>, msg: string) {
         if (!targetSongIndex) {
             break
         } else if (targetSongIndex === 1) {
-            playThisList(songArr)
+            playQueue.value = songArr
             continue
         }
 
         const targetSongObj: any = songArr[targetSongIndex - 2]
         const songInfo: SongInfo = songInfoResolve(targetSongObj)
-        if (!songInfo.access) {
-            continue
-        }
+        if (!songInfo.access) continue
 
+        playQueue.stop()
         globalThis.Player.src = songInfo.url
         globalThis.Player.play()
     }

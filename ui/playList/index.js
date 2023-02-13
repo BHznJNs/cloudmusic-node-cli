@@ -1,7 +1,7 @@
 import inquirer from "inquirer";
 import songItemTemplate from "../../utils/songItemTemplate/index.js";
 import getIndex from "../../utils/getIndex/index.js";
-import playThisList from "../../utils/playThisList/index.js";
+import playQueue from "../../utils/playQueue/index.js";
 import songInfoResolve from "../../utils/songInfoResolve/index.js";
 export default async function (songArr, msg) {
     const displaySongArr = songArr.map((item, index) => songItemTemplate(item, index + 2));
@@ -21,14 +21,14 @@ export default async function (songArr, msg) {
             break;
         }
         else if (targetSongIndex === 1) {
-            playThisList(songArr);
+            playQueue.value = songArr;
             continue;
         }
         const targetSongObj = songArr[targetSongIndex - 2];
         const songInfo = songInfoResolve(targetSongObj);
-        if (!songInfo.access) {
+        if (!songInfo.access)
             continue;
-        }
+        playQueue.stop();
         globalThis.Player.src = songInfo.url;
         globalThis.Player.play();
     }

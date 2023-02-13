@@ -1,11 +1,12 @@
 import inquirer from "inquirer"
-import recommendSongs from "../recommendSongs/index.js"
 import userPlayLists from "../userPlayLists/index.js"
+import recommendSongs from "../recommendSongs/index.js"
+import recommendPlayLists from "../recommendPlayLists/index.js"
 
 const pageMap = new Map([
     ["我的歌单", userPlayLists],
     ["每日推荐歌曲", recommendSongs],
-    ["每日推荐歌单", recommendSongs],
+    ["每日推荐歌单", recommendPlayLists],
 ])
 
 export default async function() {

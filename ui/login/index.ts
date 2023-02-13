@@ -38,12 +38,15 @@ export default async function showLoginUI() {
         return
     }
 
+    const userID = loginRes.body.account["id"]
+    const cookie = loginRes.body.cookie
     saveData(filePaths.userData, {
-        userID: loginRes.body.account["id"],
-        cookie: loginRes.body.cookie
+        userID, cookie
     })
+
+    globalThis.User.id = userID
+    globalThis.User.cookie = cookie
 
     globalThis.IsInputting = false
     return true
 }
-

@@ -1,4 +1,5 @@
 import Player from "@bhznjns/node-mp3-player";
+import playQueue from "../playQueue/index.js";
 globalThis.CurrentPageID = 0;
 globalThis.IsInputting = false;
 globalThis.Player = new Player();
@@ -21,6 +22,18 @@ process.stdin.on("keypress", (char, key) => {
                 player.volume -= 0.02;
                 console.log("\n当前音量: " + player.volume.toFixed(2));
             }
+            break;
+        case "x":
+            if (shift)
+                console.log("\n" + playQueue.toggleMode());
+            break;
+        case "left":
+            if (playQueue.value)
+                playQueue.previous();
+            break;
+        case "right":
+            if (playQueue.value)
+                playQueue.next();
             break;
         case "space":
             (player.isPlaying) ? player.stop() : player.resume();

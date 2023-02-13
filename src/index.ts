@@ -1,18 +1,20 @@
 import "../utils/global/index.js"
 import { checkFileExist, mkDir, readData } from "../utils/fileOps/index.js"
 import filePaths from "../utils/filePaths/index.js"
+import checkLoginState from "../utils/loginState/check/index.js"
+import freshLogin from "../utils/loginState/freshLogin/index.js"
 import ui from "../ui/index.js"
 
 // 创建数据文件夹
-const { dataFolderPath } = filePaths
-if (checkFileExist(dataFolderPath)) {
-    mkDir(dataFolderPath)
+const { dataFolder } = filePaths
+if (checkFileExist(dataFolder)) {
+    mkDir(dataFolder)
 }
 
 // 是否已登录
-const isLoggedIn: boolean = checkFileExist(filePaths.userData)
+let isLoggedIn: boolean = checkFileExist(filePaths.userData)
 
-;(async () => {
+;(async function main() {
     if (!isLoggedIn) {
         await ui.showLoginUI()
     } else {
@@ -20,8 +22,9 @@ const isLoggedIn: boolean = checkFileExist(filePaths.userData)
         const userDataObj: Object = JSON.parse(userDataStr)
         globalThis.User.cookie = userDataObj["cookie"]
         globalThis.User.id = userDataObj["userID"]
+
+        isLoggedIn = await checkLoginState()
+        if (!isLoggedIn) return await main()
     }
-    while(true) {
-        await ui.showMainUI()
-    }
+    while(true) await ui.showMainUI()
 })()
