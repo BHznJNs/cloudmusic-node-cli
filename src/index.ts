@@ -2,7 +2,6 @@ import "../utils/global/index.js"
 import { checkFileExist, mkDir, readData } from "../utils/fileOps/index.js"
 import filePaths from "../utils/filePaths/index.js"
 import checkLoginState from "../utils/loginState/check/index.js"
-import freshLogin from "../utils/loginState/freshLogin/index.js"
 import ui from "../ui/index.js"
 
 // 创建数据文件夹
