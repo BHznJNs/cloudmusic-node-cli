@@ -4,18 +4,29 @@ import playQueue from "../playQueue/index.js"
 /*
 PageIDList: {
     0: null,
-    1: LoginPage,
-    2: MainPage,
-    3: UserPlayLists,
-    4: RecommendSongs,
-    5: RecommendPlayLists,
+    1: PlayPage
+    2: LoginPage,
+    3: MainPage,
+    4: UserPlayLists,
+    5: RecommendSongs,
+    6: RecommendPlayLists,
 }
 */
 
 globalThis.CurrentPageID = 0
 globalThis.IsInputting   = false
 globalThis.Player = new Player()
-globalThis.User   = {
+globalThis.PlayInfo = {
+    name: null,
+    id: 0,
+    album: {
+        name: null,
+        id: 0,
+    },
+    artists: null,
+}
+globalThis.CurrentPlayList = null
+globalThis.User = {
     cookie: null,
     id: null,
 }

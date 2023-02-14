@@ -4,7 +4,7 @@ import showPlayLists from "../playLists/index.js"
 const { user_playlist } = NCMApi
 
 export default async function() {
-    globalThis.CurrentPageID = 3
+    globalThis.CurrentPageID = 4
 
     let userPlayListRes: NCMApi.Response
     try {

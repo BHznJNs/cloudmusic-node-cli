@@ -10,6 +10,7 @@ type ToggleModeMsg = string
 
 interface PlayQueue {
     __mode: number,
+    get mode(): string,
     toggleMode(): ToggleModeMsg,
 
     __currentQueue: Array<any> | null,
@@ -26,17 +27,19 @@ interface PlayQueue {
     stop(): void,
 }
 
-const toggleModeMsgs: Array<string> = [
-    "已切换为顺序播放",
-    "已切换为随机播放",
+const modeNames: Array<string> = [
+    "顺序播放", "随机播放",
 ]
 
 const queue: PlayQueue = {
     __mode: 0,
+    get mode() {
+        return modeNames[this.__mode]
+    },
     toggleMode() {
         // 0 -> 1 || 1 -> 0
         this.__mode = this.__mode ^ 1
-        return toggleModeMsgs[this.__mode]
+        return "已切换为" + modeNames[this.__mode]
     },
 
     __currentQueue: null,
@@ -50,6 +53,8 @@ const queue: PlayQueue = {
         return this.__currentQueue
     },
     set value(newPlayList: Array<any>) {
+        globalThis.CurrentPlayList = newPlayList
+
         this.__currentQueue = newPlayList
         this.__currentMaxIndex = newPlayList.length
         this.next()

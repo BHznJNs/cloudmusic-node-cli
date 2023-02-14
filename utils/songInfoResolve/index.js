@@ -9,6 +9,11 @@ function songInfoResolve(songItem) {
     if (!access) {
         console.log("\n" + songFeeMsg[fee]);
     }
+    globalThis.PlayInfo.id = id;
+    globalThis.PlayInfo.name = name;
+    globalThis.PlayInfo.artists = songItem.ar;
+    globalThis.PlayInfo.album.id = songItem.al.id;
+    globalThis.PlayInfo.album.name = songItem.al.name;
     const result = {
         id, name, access,
         url: songApi(id),

@@ -3,6 +3,16 @@ import playQueue from "../playQueue/index.js";
 globalThis.CurrentPageID = 0;
 globalThis.IsInputting = false;
 globalThis.Player = new Player();
+globalThis.PlayInfo = {
+    name: null,
+    id: 0,
+    album: {
+        name: null,
+        id: 0,
+    },
+    artists: null,
+};
+globalThis.CurrentPlayList = null;
 globalThis.User = {
     cookie: null,
     id: null,

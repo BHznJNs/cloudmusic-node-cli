@@ -4,7 +4,7 @@ import showPlayLists from "../playLists/index.js"
 const { recommend_resource } = NCMApi
 
 export default async function() {
-    globalThis.CurrentPageID = 5
+    globalThis.CurrentPageID = 6
 
     let recommendResourceRes: NCMApi.Response
     try {

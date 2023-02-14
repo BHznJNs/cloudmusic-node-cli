@@ -4,7 +4,7 @@ import filePaths from "../../utils/filePaths/index.js";
 import { saveData } from "../../utils/fileOps/index.js";
 const { login } = NCMApi;
 export default async function showLoginUI() {
-    globalThis.CurrentPageID = 1;
+    globalThis.CurrentPageID = 2;
     globalThis.IsInputting = true;
     const answer = await inquirer.prompt([
         {

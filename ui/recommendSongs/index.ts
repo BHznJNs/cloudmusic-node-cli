@@ -4,7 +4,7 @@ import showPlayList from "../playList/index.js"
 const { recommend_songs } = NCMApi
 
 export default async function() {
-    globalThis.CurrentPageID = 4
+    globalThis.CurrentPageID = 5
 
     let recommendSongRes: NCMApi.Response
     try {

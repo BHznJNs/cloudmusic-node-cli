@@ -1,13 +1,15 @@
 import songInfoResolve from "../songInfoResolve/index.js";
-const toggleModeMsgs = [
-    "已切换为顺序播放",
-    "已切换为随机播放",
+const modeNames = [
+    "顺序播放", "随机播放",
 ];
 const queue = {
     __mode: 0,
+    get mode() {
+        return modeNames[this.__mode];
+    },
     toggleMode() {
         this.__mode = this.__mode ^ 1;
-        return toggleModeMsgs[this.__mode];
+        return "已切换为" + modeNames[this.__mode];
     },
     __currentQueue: null,
     __currentIndex: -1,
@@ -19,6 +21,7 @@ const queue = {
         return this.__currentQueue;
     },
     set value(newPlayList) {
+        globalThis.CurrentPlayList = newPlayList;
         this.__currentQueue = newPlayList;
         this.__currentMaxIndex = newPlayList.length;
         this.next();

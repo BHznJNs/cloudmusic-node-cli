@@ -2,7 +2,7 @@ import NCMApi from "NeteaseCloudMusicApi";
 import showPlayLists from "../playLists/index.js";
 const { user_playlist } = NCMApi;
 export default async function () {
-    globalThis.CurrentPageID = 3;
+    globalThis.CurrentPageID = 4;
     let userPlayListRes;
     try {
         userPlayListRes = await user_playlist({
