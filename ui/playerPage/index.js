@@ -4,7 +4,7 @@ import playQueue from "../../utils/playQueue/index.js";
 import getIndex from "../../utils/getIndex/index.js";
 import showArtists from "../artists/index.js";
 import showPlayList from "../playList/index.js";
-const { album } = NCMApi;
+const { album, like } = NCMApi;
 export default async function () {
     globalThis.CurrentPageID = 1;
     while (true) {
@@ -54,6 +54,17 @@ export default async function () {
                 break;
             case 5:
                 playQueue.toggleMode();
+                break;
+            case 7:
+                if (!playInfo.id)
+                    break;
+                const likeRes = await like({
+                    id: playInfo.id,
+                    cookie: globalThis.User.cookie
+                });
+                if (likeRes.status === 200 && likeRes.body.code === 200) {
+                    console.log("歌曲喜欢成功");
+                }
                 break;
         }
     }

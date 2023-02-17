@@ -2,7 +2,7 @@ import inquirer from "inquirer"
 import displayArtist from "./display.js"
 import getIndex from "../../utils/getIndex/index.js"
 
-export default async function(artists: Array<any>) {
+export default async function(artists: Array<any>, msg:string = "选择歌手") {
     if (!artists || !artists.length) return
 
     if (artists.length === 1) {
@@ -18,7 +18,7 @@ export default async function(artists: Array<any>) {
             {
                 type: "list",
                 name: "targetArtist",
-                message: "选择歌手",
+                message: msg,
                 choices: displayArr,
             }
         ])

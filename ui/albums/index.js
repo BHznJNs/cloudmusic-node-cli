@@ -3,27 +3,35 @@ import NCMApi from "NeteaseCloudMusicApi";
 import getIndex from "../../utils/getIndex/index.js";
 import showAlbum from "../playList/index.js";
 import playListInfoResolve from "../../utils/playListInfoResolve/index.js";
-const { artist_album, album } = NCMApi;
-export default async function (artist) {
-    const albumRes = await artist_album({
-        id: artist.id
-    });
-    const albumArr = albumRes.body.hotAlbums;
-    const displayAlbumArr = albumArr.map((item, index) => `${index + 1}. ${item.name}`);
+const { album } = NCMApi;
+export default async function (albums, msg, opts = {}) {
+    const displayAlbumArr = albums.map((item, index) => `${index + 1}. ${item.name}`);
     displayAlbumArr.unshift("0. 返回上一级");
+    const { previous, next } = opts;
+    if (previous)
+        displayAlbumArr.push(displayAlbumArr.length + ". 上一页");
+    if (next)
+        displayAlbumArr.push(displayAlbumArr.length + ". 下一页");
     while (true) {
         const { targetAlbum } = await inquirer.prompt([
             {
                 type: "list",
                 name: "targetAlbum",
-                message: artist.name + " 的专辑",
+                message: msg,
                 choices: displayAlbumArr,
             }
         ]);
         const targetAlbumIndex = getIndex(targetAlbum);
-        if (!targetAlbumIndex)
+        if (!targetAlbumIndex) {
             break;
-        const albumInfo = playListInfoResolve(albumArr[targetAlbumIndex - 1]);
+        }
+        else if (targetAlbumIndex === displayAlbumArr.length - 2 && previous) {
+            return -1;
+        }
+        else if (targetAlbumIndex === displayAlbumArr.length - 1 && next) {
+            return 1;
+        }
+        const albumInfo = playListInfoResolve(albums[targetAlbumIndex - 1]);
         const { name, id } = albumInfo;
         let albumDetail;
         try {
@@ -36,4 +44,5 @@ export default async function (artist) {
         const { songs } = albumDetail.body;
         await showAlbum(songs, "专辑: " + name);
     }
+    return 0;
 }

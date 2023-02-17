@@ -2,7 +2,7 @@ export default function(item: any, index: number): string {
     const songName: string = item.name
 
     const artistsNameArr: Array<string> = []
-    const artists: Array<Object> = item.ar
+    const artists: Array<Object> = item.ar || item.artists
     for (const artist of artists) {
         artistsNameArr.push(artist["name"])
     }

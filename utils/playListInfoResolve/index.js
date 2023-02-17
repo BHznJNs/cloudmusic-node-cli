@@ -1,7 +1,8 @@
 export default function (playListItem) {
     const result = {
         name: playListItem.name,
-        id: playListItem.id
+        id: playListItem.id,
+        count: playListItem.trackCount,
     };
     return result;
 }
