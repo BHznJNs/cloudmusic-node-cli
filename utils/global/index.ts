@@ -25,7 +25,6 @@ globalThis.PlayInfo = {
     },
     artists: null,
 }
-globalThis.CurrentPlayList = null
 globalThis.User = {
     cookie: null,
     id: null,

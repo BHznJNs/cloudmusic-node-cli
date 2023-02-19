@@ -48,8 +48,8 @@ export default async function () {
                 }
                 break;
             case 4:
-                if (globalThis.CurrentPlayList) {
-                    await showPlayList(globalThis.CurrentPlayList, "当前播放列表");
+                if (playQueue.value) {
+                    await showPlayList(playQueue.value, "当前播放列表");
                 }
                 break;
             case 5:
